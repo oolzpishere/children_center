@@ -12,8 +12,8 @@ class CreateMatches < ActiveRecord::Migration[5.2]
 
       t.text :entry
       t.string :gen_code, index: true
-      t.datetime :form_created_at
-      t.datetime :form_updated_at
+      # t.datetime :form_created_at
+      # t.datetime :form_updated_at
 
       t.timestamps
     end

@@ -38,4 +38,10 @@ class ApplicationController < ActionController::Base
       WechatAuth::Oauth.new(redirect_uri: request.url)
     end
 
+    def authenticate
+      authenticate_or_request_with_http_digest do |username|
+        USERS[username]
+      end
+    end
+
 end

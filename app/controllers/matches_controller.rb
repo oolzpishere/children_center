@@ -1,10 +1,14 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate, except: [:show, :index]
+  skip_before_action :authenticate, only: [:create], if: Proc.new { |c| c.request.format == 'application/json'}
 
   # GET /matches
   # GET /matches.json
   def index
-    @matches = Match.all
+    @matches = Match.order(id: :desc).all
+    @openid_results = Rails.env.match(/production/) ? @matches.where(openid: session[:openid]) : @matches
+
   end
 
   # GET /matches/1
@@ -24,17 +28,42 @@ class MatchesController < ApplicationController
   # POST /matches
   # POST /matches.json
   def create
-    @match = Match.new(match_params)
+    # like: http://localhost:3000/results?pass=ENV["QIANYAN_FORM_PASS"]
+    unless params[:pass] == ENV["QIANYAN_PASS"]
+      return render json: {'fail':'need pass'}.to_json, status: :bad_request
+    end
+
+    id = match_params.dig(:entry, :serial_number) ||  match_params[:id]
+    hash = {
+      "id" => id,
+      "serial_number" => match_params.dig(:entry, :serial_number) ||  match_params[:id],
+      "openid" => match_params.dig(:entry, :x_field_weixin_openid) || match_params[:openid],
+      # "phone" => match_params.dig(:entry, :phone) || match_params[:phone],
+      # "email" => match_params.dig(:entry, :email) || match_params[:email],
+      "gen_code" => match_params.dig(:entry, :gen_code) || match_params[:gen_code] || "",
+      # "created_at" => match_params.dig(:entry, :created_at) || match_params[:created_at],
+      # "updated_at" => match_params.dig(:entry, :updated_at) || match_params[:updated_at]
+    }
+
+    match_params_merged = match_params.merge(hash)
+
+    @match = Match.find_or_create_by(id: id)
+    @match.assign_attributes(match_params_merged)
 
     respond_to do |format|
       if @match.save
         format.html { redirect_to @match, notice: 'Match was successfully created.' }
-        format.json { render :show, status: :created, location: @match }
+        format.json { render json: "", status: :ok }
+        # format.json { render :show, status: :created, location: @match }
       else
         format.html { render :new }
         format.json { render json: @match.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def batch_create
+
   end
 
   # PATCH/PUT /matches/1
@@ -69,6 +98,6 @@ class MatchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def match_params
-      params.fetch(:match, {})
+      params.fetch(:match, {}).permit(:id, :serial_number, :form, :form_name, :openid, :gen_code, :created_at, :updated_at, :entry => {})
     end
 end
