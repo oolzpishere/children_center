@@ -4,7 +4,7 @@ class XmlFactory
   attr_reader :file_name, :path, :key_type
   def initialize(ps = {})
     @file_name = 'form_' + ps[:form] if ps[:form]
-    @path = ps[:path] || File.join(File.expand_path(  "../", __FILE__ ), file_name)
+    @path = ps[:path] || File.join(File.expand_path(  "../form_files", __FILE__ ), file_name)
     # @key_type = ps[:key_type]
   end
 

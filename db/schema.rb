@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_09_24_084934) do
     t.string "form_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["form"], name: "index_forms_on_form"
   end
 
   create_table "matches", force: :cascade do |t|
@@ -28,11 +29,13 @@ ActiveRecord::Schema.define(version: 2019_09_24_084934) do
     t.string "unionid"
     t.string "phone"
     t.string "email"
-    t.text "entry"
+    t.bigint "form_id"
+    t.json "entry"
     t.string "gen_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_matches_on_email"
+    t.index ["form_id"], name: "index_matches_on_form_id"
     t.index ["gen_code"], name: "index_matches_on_gen_code"
     t.index ["openid"], name: "index_matches_on_openid"
     t.index ["phone"], name: "index_matches_on_phone"

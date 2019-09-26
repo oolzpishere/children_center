@@ -1,3 +1,3 @@
 class Match < ApplicationRecord
-  # belongs_to :form
+  belongs_to :form
 end

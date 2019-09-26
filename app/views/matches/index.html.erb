@@ -3,39 +3,32 @@
 <div class="row">
   <div class="col-12">
 	   <h5><%= "您尚未提交报名信息，请在“前沿课堂论坛”公众号进行提交。"  if @openid_results.count < 1%></h5>
-	<%  @openid_results.each do |result| %>
-	    <% entry = Entry.new(result: result).values %>
-      <% names = %w(姓名 序号 确认码 提交时间) %>
-      <% %w(广西区内报名 广西区外报名 作品评审费 光盘征订).each {|name| names << name if entry[name].to_s.match(/\d/) } %>
-	    <div class="card">
-		<div class="card-content">
-		    <table class="striped">
-			<thead>
-			    <tr>
-		        <th class="card-title"><%= result.form_name %></th>
-			    </tr>
-			</thead>
+     <% @openid_results.each do |record| %>
+         	<% record.each do |result| %>
+       	    <% values = Entry.new(result: result).show_values %>
+             <% index_names = %w(姓名 序号 确认码 提交时间) %>
+             <% %w(广西区内报名 广西区外报名 作品评审费 光盘征订 会议视频征订).each {|name| index_names << name if values[name].to_s.match(/\d/) } %>
+       	    <div class="card col-12 px-0 mb-3">
+               <div class="card-header">
+                 <span class="h6"><%= result.form.form_name %></span>
+               </div>
+               <div class="card-body">
+                 <!-- <div class="card-title h5"><%= result.form_name %></div> -->
+             		<div class="card-text">
+                   <% index_names.each do |name| %>
+                     <p class="mb-1">
+           				    <%= tag.b("#{name}:") %>
+                       <%= compile_value(values[name])%>
+                     </p>
+                   <% end %>
 
-			<tbody>
-        <% names.each do |name| %>
-			    <tr>
-				<td>
-				    <%= tag.b("#{name}:") %>
-            <%= compact_empty(entry[name])%>
-				</td>
-			    </tr>
-          <% end %>
-			</tbody>
-		    </table>
+             			<%= link_to '查看详情',{ controller: "dvd_results",action: 'show', id: result,  subject: result.class.name}, class: "waves-effect waves-light btn blue darken-1 white-text" %>
+             		</div>
+               </div>
+       	    </div>
 
-		    <div class="card-action">
-			<%= link_to '查看详情',{ controller: "results",action: 'show',id: result,  subject: result.class.name}, class: "waves-effect waves-light btn blue darken-1 white-text" %>
-		    </div>
-
-		</div>
-	    </div>
-
-	<% end %>
+         	<% end %>
+         <% end %>
 	<%= link_to '返回',  root_path, class: "waves-effect waves-light btn blue darken-1 white-text" %>
   </div>
 </div>

@@ -34,8 +34,15 @@ class MatchesController < ApplicationController
     end
 
     id = match_params.dig(:entry, :serial_number) ||  match_params[:id]
+
+    form_params = {form: params["form"], form_name: params["form_name"]}
+    @form = Form.find_or_create_by(form: form_params[:form])
+    @form.assign_attributes(form_params)
+    @form.save
+
     hash = {
       "id" => id,
+      "form_id" => @form.id,
       "serial_number" => match_params.dig(:entry, :serial_number) ||  match_params[:id],
       "openid" => match_params.dig(:entry, :x_field_weixin_openid) || match_params[:openid],
       # "phone" => match_params.dig(:entry, :phone) || match_params[:phone],
@@ -44,7 +51,7 @@ class MatchesController < ApplicationController
       # "created_at" => match_params.dig(:entry, :created_at) || match_params[:created_at],
       # "updated_at" => match_params.dig(:entry, :updated_at) || match_params[:updated_at]
     }
-
+    # byebug
     match_params_merged = match_params.merge(hash)
 
     @match = Match.find_or_create_by(id: id)
