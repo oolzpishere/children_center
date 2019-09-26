@@ -1,0 +1,182 @@
+<tbody>
+                <tr class=" ">
+                  <td>序号</td>
+                  <td>Float</td>
+                  <td>serial_number</td>
+                </tr>
+                <tr class=" ">
+                  <td>姓名</td>
+                  <td>String</td>
+                  <td>field_1</td>
+                </tr>
+                <tr class=" ">
+                  <td>性别</td>
+                  <td>String</td>
+                  <td>field_2</td>
+                </tr>
+                <tr class=" ">
+                  <td>年龄</td>
+                  <td>Float</td>
+                  <td>field_3</td>
+                </tr>
+                <tr class=" ">
+                  <td>参赛地区</td>
+                  <td>Hash</td>
+                  <td>field_4</td>
+                </tr>
+                <tr class=" ">
+                  <td>学校全称</td>
+                  <td>String</td>
+                  <td>field_5</td>
+                </tr>
+                <tr class=" ">
+                  <td>家长姓名</td>
+                  <td>String</td>
+                  <td>field_6</td>
+                </tr>
+                <tr class=" ">
+                  <td>家长手机</td>
+                  <td>String</td>
+                  <td>field_7</td>
+                </tr>
+                <tr class=" ">
+                  <td>邮箱</td>
+                  <td>String</td>
+                  <td>field_8</td>
+                </tr>
+                <tr class=" ">
+                  <td>是否参加主赛</td>
+                  <td>String</td>
+                  <td>field_19</td>
+                </tr>
+                <tr class=" ">
+                  <td>年级（组别）</td>
+                  <td>String</td>
+                  <td>field_12</td>
+                </tr>
+                <tr class=" ">
+                  <td>笔种组别（类别）</td>
+                  <td>String</td>
+                  <td>field_13</td>
+                </tr>
+                <tr class=" ">
+                  <td>作品名称</td>
+                  <td>String</td>
+                  <td>field_14</td>
+                </tr>
+                <tr class=" ">
+                  <td>作品简介</td>
+                  <td>String</td>
+                  <td>field_15</td>
+                </tr>
+                <tr class=" ">
+                  <td>指导教师</td>
+                  <td>String</td>
+                  <td>field_16</td>
+                </tr>
+                <tr class=" ">
+                  <td>教师手机</td>
+                  <td>String</td>
+                  <td>field_17</td>
+                </tr>
+                <tr class=" ">
+                  <td>是否参加附赛</td>
+                  <td>String</td>
+                  <td>field_21</td>
+                </tr>
+                <tr class=" ">
+                  <td>年级（组别）--附赛</td>
+                  <td>String</td>
+                  <td>field_22</td>
+                </tr>
+                <tr class=" ">
+                  <td>笔种组别（类别）--附赛</td>
+                  <td>String</td>
+                  <td>field_23</td>
+                </tr>
+                <tr class=" ">
+                  <td>作品名称--附赛</td>
+                  <td>String</td>
+                  <td>field_24</td>
+                </tr>
+                <tr class=" ">
+                  <td>作品简介--附赛</td>
+                  <td>String</td>
+                  <td>field_25</td>
+                </tr>
+                <tr class=" ">
+                  <td>指导教师--附赛</td>
+                  <td>String</td>
+                  <td>field_26</td>
+                </tr>
+                <tr class=" ">
+                  <td>教师手机--附赛</td>
+                  <td>String</td>
+                  <td>field_27</td>
+                </tr>
+                <tr class=" ">
+                  <td>微信昵称</td>
+                  <td>String</td>
+                  <td>x_field_weixin_nickname</td>
+                </tr>
+                <tr class=" ">
+                  <td>微信性别</td>
+                  <td>String</td>
+                  <td>x_field_weixin_gender</td>
+                </tr>
+                <tr class=" ">
+                  <td>微信国家</td>
+                  <td>String</td>
+                  <td>x_field_weixin_country</td>
+                </tr>
+                <tr class=" ">
+                  <td>微信省市</td>
+                  <td>Hash</td>
+                  <td>x_field_weixin_province_city</td>
+                </tr>
+                <tr class=" ">
+                  <td>微信OpenID</td>
+                  <td>String</td>
+                  <td>x_field_weixin_openid</td>
+                </tr>
+                <tr class=" ">
+                  <td>微信头像</td>
+                  <td>String</td>
+                  <td>x_field_weixin_headimgurl</td>
+                </tr>
+                <tr class=" ">
+                  <td>提交人</td>
+                  <td>String</td>
+                  <td>creator_name</td>
+                </tr>
+                <tr class=" ">
+                  <td>提交时间</td>
+                  <td>DateTime</td>
+                  <td>created_at</td>
+                </tr>
+                <tr class=" ">
+                  <td>修改时间</td>
+                  <td>DateTime</td>
+                  <td>updated_at</td>
+                </tr>
+                <tr class="metainfo-example hide">
+                  <td>填写设备</td>
+                  <td>String</td>
+                  <td>info_platform</td>
+                </tr>
+                <tr class="metainfo-example hide">
+                  <td>操作系统</td>
+                  <td>String</td>
+                  <td>info_os</td>
+                </tr>
+                <tr class="metainfo-example hide">
+                  <td>浏览器</td>
+                  <td>String</td>
+                  <td>info_browser</td>
+                </tr>
+                <tr class=" ">
+                  <td>IP</td>
+                  <td>String</td>
+                  <td>info_remote_ip</td>
+                </tr>
+              </tbody>

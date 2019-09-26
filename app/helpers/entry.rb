@@ -1,7 +1,7 @@
 # coding: utf-8
 class Entry
-
-  attr_reader :result, :entry, :form, :form_name, :file_pair
+  attr_accessor :entry
+  attr_reader :result, :form, :form_name, :file_pair
 
   # hd=hash_data
   # [params] Result.any
@@ -10,63 +10,54 @@ class Entry
     @entry = result[:entry]
     form = result[:form]
     form_name = result[:form_name]
-    # key_type = eng_key? ? "eng" : "chinese"
-    @file_pair = Zxml::XmlFactory.new(form: form).name_pair
+
+    @xml_factory = XmlFactory.new(form: form)
+    @form_fields = xml_factory.form_fields
   end
 
-  def values
-    values = eng_key? ? change_name : filter_entry
-    except_hash(values)
-  end
-
-  def except_hash(values)
-    values =  values.except( '提交人', '微信头像', '微信OpenID', '微信昵称', '微信性别', '微信国家', '微信省市', '修改时间' )
-    reject_empty(values)
-  end
-
-  # reject empty products
-  def reject_empty(values)
-    values.reject { |k,v|
-      ( !v.to_s.match(/\d/) if v.is_a?(Hash) || v.is_a?(Array) ) || v.to_s.chomp.empty?
-    }
-  end
-
-
-
-  # from {"serial_number" =>123, ... } become {"序号" => 123, ... }
-  # from english name change to chinese name
-  # eg. serial_number to 序号
-  def change_name
-    filter_entry.inject({}) { |h, (k,v)| h[file_pair[k]] = v; h }
-    # buf_entry = eng_key? ? filter_entry("keys") : filter_entry("values")
-    # mem = {}
-    # # from {"serial_number" =>123, ... } become {"序号" => 123, ... }
-    # filter_entry.each do |h|
-    #   hk, hv = h
-    #   real_name = file_pair[hk]
-    #   mem[real_name] = hv
-    # end
-    # mem
-    # a_new_hash = my_hash.inject({}) { |h, (k, v)| h[k] = v.upcase; h }
-  end
-
-  # 对应不上最新field name的则不显示
-  # english key use keys or chinese key use values from file_pair
-  def filter_entry
-    key_type = eng_key? ? "keys" : "values"
-    entry_to_h.select do |k, _|
-      keys = file_pair.send(key_type)
-      keys.include?(k)
+    def show_values
+      name_values = {}
+      values.each do |k,v|
+        label = form_structure[k] && form_structure[k]["label"]
+        name_values[label] = v
+      end
+      name_values
     end
-  end
 
-  def eng_key?
-    entry_to_h.keys.any? {|k| k.match(/serial/) || k.match(/field/)}
-  end
+    def values
+      # values = eng_key? ? change_name : filter_entry
+      # except_hash(values)
+      v = except_hash(filter_entry)
+      reject_empty(v)
+    end
 
-  private
-  # json post from jinshuju, product if not choose number, it's not show the product and number.
-  def entry_to_h
-    JSON.parse entry.gsub('=>', ':') # .gsub('nil', "\"\"")
-  end
+    # 对应不上最新form_files的则不显示
+    # english key use keys or chinese key use values from name_pair
+    def get_permitted_entry
+      entry = filter_entry_by_form
+
+      # todo better do it at show action.
+      reject_array = ['发票号', '邮寄状态','提交人', '微信头像', '微信OpenID', '微信昵称', '微信性别', '微信国家', '微信省市', '修改时间', 'IP']
+      entry = except_hash(reject_array, entry)
+    end
+
+    def filter_entry_by_form
+      entry.select do |k, _|
+        xml_factory.form_keys.include?(k)
+      end
+    end
+
+    def except_hash(reject_array, entry)
+      entry.reject{|k,_| reject_array.include?( form_fields[k]["label"] ) }
+    end
+
+    # todo not used.
+    # reject empty products
+    def reject_empty(values)
+      values.reject { |k,v|
+        ( !v.to_s.match(/\d/) if v.is_a?(Hash) || v.is_a?(Array) ) || v.to_s.chomp.empty?
+      }
+    end
+
+
 end
