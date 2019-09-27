@@ -18,8 +18,8 @@ class Entry
 
     def show_values
       name_values = {}
-      values.each do |k,v|
-        label = form_structure[k] && form_structure[k]["label"]
+      get_permitted_entry.each do |k,v|
+        label = form_fields.first[k] && form_fields.first[k]["label"]
         name_values[label] = v
       end
       name_values
