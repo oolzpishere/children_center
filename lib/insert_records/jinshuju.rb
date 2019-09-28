@@ -4,7 +4,7 @@ module InsertRecords
 
     def batch_query
       response, response_body_hash = request_loop
-      until response_body_hash["next"]
+      while response_body_hash["next"]
         response, response_body_hash = request_loop(response_body_hash["next"])
       end
 
@@ -12,7 +12,6 @@ module InsertRecords
 
     def request_loop(next_num = nil)
       request = request(next_num)
-      request.run
       response = request.response
       raise "request form data fail. #{response.body}" unless response.success?
       response_body_hash = JSON.parse(response.body)
@@ -60,6 +59,7 @@ module InsertRecords
         params: {},
         headers: { Accept: "application/json", "Content-Type" => "application/json" }
       )
+      request.run
       request
     end
 
