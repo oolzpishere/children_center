@@ -94,3 +94,8 @@ gem "roo"
 gem "roo-xls"
 
 gem 'bootstrap'
+
+gem 'faker'
+gem 'activerecord-import'
+
+gem "typhoeus"
