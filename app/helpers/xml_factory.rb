@@ -1,20 +1,16 @@
 # coding: utf-8
 
 class XmlFactory
-  attr_reader :file_name, :path, :key_type
+  attr_reader :file_name, :path, :key_type, :form_fields, :form_keys
   def initialize(ps = {})
     @file_name = 'form_' + ps[:form] if ps[:form]
     @path = ps[:path] || File.join(File.expand_path(  "../form_files", __FILE__ ), file_name)
     # @key_type = ps[:key_type]
-  end
 
-  # getting: ["serial_number", "total_price", "trade_no", "trade_status", "payment_method", "field_45", "field_48".....]
-  def form_keys
-    form_fields && form_fields.map(&:keys).flatten()
-  end
-
-  def form_fields
-    get_form_structure["fields"]
+    form_structure = get_form_structure
+    @form_fields = form_structure["fields"]
+    # getting: ["serial_number", "total_price", "trade_no", "trade_status", "payment_method", "field_45", "field_48".....]
+    @form_keys = form_fields && form_fields.map(&:keys).flatten()
   end
 
   # getting:
