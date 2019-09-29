@@ -1,18 +1,20 @@
 # coding: utf-8
 class Entry
   attr_accessor :entry
-  attr_reader :result, :xml_factory, :form_fields
+  attr_reader :result, :xml_factory, :form_fields, :form_keys
 
   # hd=hash_data
   # [params] Result.any
   def initialize(ps = {})
     @result = ps[:result]
     @entry = result[:entry]
-    form = result.form
+    form = ps[:form]
     form_unique_id = form.form
     form_name = form.form_name
 
     @xml_factory = XmlFactory.new(form: form_unique_id)
+    # xml_factory.form_keys: xml的生成较久，需要0.03s,所以需要把数据存出来
+    @form_keys = xml_factory.form_keys
     @form_fields = xml_factory.form_fields
   end
 
@@ -44,7 +46,7 @@ class Entry
 
     def filter_entry_by_form
       entry.select do |k, _|
-        xml_factory.form_keys.include?(k)
+        form_keys.include?(k)
       end
     end
 

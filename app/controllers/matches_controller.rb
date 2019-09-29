@@ -6,8 +6,11 @@ class MatchesController < ApplicationController
   # GET /matches
   # GET /matches.json
   def index
-    @matches = Match.order(id: :desc).all
-    @openid_results = Rails.env.match(/production/) ? @matches.where(openid: session[:openid]) : @matches
+    if Rails.env.match(/production/)
+      @openid_results = Match.includes(:form).where(openid: session[:openid])
+    else
+      @openid_results = Match.includes(:form).order(id: :desc)
+    end
 
   end
 
