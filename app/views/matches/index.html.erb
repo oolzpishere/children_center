@@ -5,7 +5,9 @@
       广西赛区参赛报名结果查询</span>
 
     <% if @openid_results.count < 1%>
-      <h5>"您尚未提交报名信息，请在“前沿课堂论坛”公众号进行提交。"</h5>
+      <div class="card ">
+        <h5>"您尚未提交报名信息，请在“前沿课堂论坛”公众号进行提交。"</h5>
+      </div>
     <% end %>
   </div>
 
@@ -39,6 +41,6 @@
        	    </div>
 
          <% end %>
-	<%# link_to '返回',  root_path, class: "btn btn-sm btn-primary" %>
+	<%= link_to '返回',  root_path, class: "btn btn-sm btn-primary" %>
   </div>
 </div>

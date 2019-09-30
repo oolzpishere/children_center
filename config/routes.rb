@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root to: "matches#index"
+  root to: "pages#competition"
   resources :matches
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # for last match. get 'registration', to: 'pages#show'
+  # get '/:path', to: 'pages#show'
+  get 'competition', to: 'pages#competition'
 end
