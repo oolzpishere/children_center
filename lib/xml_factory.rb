@@ -16,7 +16,7 @@ class XmlFactory
   # getting:
   # {"fields" => [{
   #       "field_9" => {
-  #                   "label": "您对我们的服务满意么？"
+  #                   "label": "您对我们的服务满意么？", ...
   #                 }
   #     }, ... ]}
   def get_form_structure

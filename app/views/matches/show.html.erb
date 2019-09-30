@@ -1,3 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 my-3">
+      <div class="card">
+        <div class="card-header">
+          <span class="h6">第二十四届全国中小学生绘画书法作品比赛<br>
+            广西赛区参赛报名结果查询</span>
+        </div>
+        <div class="card-body">
+          <div class="card-text">
+          <% form_fields = Entry.new(result: @match).set_show_values %>
+          <% form_fields.each do |field_hash| %>
+          <%# form_fields.each do |k, v| %>
+            <% v = field_hash.values.first %>
+            <p class="mb-1">
+              <b><%= v["label"] + ":"%></b>
+              <%= v["value"] %>
+            </p>
+          <% end %>
 
-<%= link_to 'Edit', edit_match_path(@match) %> |
-<%= link_to 'Back', matches_path %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 mb-3">
+      <%= link_to '返回', { controller: "matches", action: 'index'}, class: "btn btn-sm btn-primary" %>
+    </div>
+
+
+
+  </div>
+</div>

@@ -1,36 +1,44 @@
 
 <div class="row no-gutters p-3">
-  <div class="col-12">
+  <div class="col-12 mb-3 text-center">
+    <span class="h6">第二十四届全国中小学生绘画书法作品比赛<br>
+      广西赛区参赛报名结果查询</span>
+
     <% if @openid_results.count < 1%>
       <h5>"您尚未提交报名信息，请在“前沿课堂论坛”公众号进行提交。"</h5>
     <% end %>
-    <span class="h6"><%= @openid_results[0].form.form_name %></span>
-    <% form = @openid_results[0].form %>
-     <% @openid_results.each do |record| %>
-            <%# puts Benchmark.measure {Entry.new(result: record, form: form).show_values } %>
-       	    <% values = Entry.new(result: record, form: form).show_values %>
-             <% index_names = %w(姓名 序号 确认码 提交时间) %>
-             <% %w(广西区内报名 广西区外报名 作品评审费 光盘征订 会议视频征订).each {|name| index_names << name if values[name].to_s.match(/\d/) } %>
-       	    <div class="card mb-3">
-               <div class="card-header">
+  </div>
 
-               </div>
+  <div class="col-12">
+
+    <%# form = @openid_results[0].form %>
+    <% index_names = %w(姓名 序号 确认码 提交时间) %>
+     <% @openid_results.each do |record| %>
+       	    <% form_fields = Entry.new(result: record, show_fileds: index_names).set_show_values %>
+
+             <%# %w(广西区内报名 广西区外报名 作品评审费 光盘征订 会议视频征订).each {|name| index_names << name if values[name].to_s.match(/\d/) } %>
+       	    <div class="card mb-3">
+               <!-- <div class="card-header">
+
+               </div> -->
                <div class="card-body">
 
              		<div class="card-text">
-                   <% index_names.each do |name| %>
+                   <% form_fields.each do |field_hash| %>
+                     <% v = field_hash.values.first %>
                      <p class="mb-1">
-           				    <%= tag.b("#{name}:") %>
-                       <%= compile_value(values[name])%>
+           				    <%= tag.b(v["label"] + ":") %>
+                      <%= v["value"] %>
+                      <%# compile_value(values[name])%>
                      </p>
                    <% end %>
 
-             			<%= link_to '查看详情',{ controller: "matches",action: 'show', id: record,  subject: record.class.name}, class: "waves-effect waves-light btn blue darken-1 white-text" %>
+             			<%= link_to '查看详情',{ controller: "matches", action: 'show', id: record}, class: "btn btn-sm btn-primary" %>
              		</div>
-               </div>
+              </div>
        	    </div>
 
          <% end %>
-	<%= link_to '返回',  root_path, class: "waves-effect waves-light btn blue darken-1 white-text" %>
+	<%# link_to '返回',  root_path, class: "btn btn-sm btn-primary" %>
   </div>
 </div>
