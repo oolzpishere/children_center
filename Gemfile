@@ -59,17 +59,17 @@ group :development do
 
   gem 'derailed_benchmarks'
   gem 'stackprof'
+
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-puma'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
-
-  gem 'capistrano'
-  gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
-  # gem 'capistrano3-puma'
 
   gem 'rspec-rails'
   # Easy installation and use of chromedriver to run system tests with Chrome
