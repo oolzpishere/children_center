@@ -1,5 +1,11 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
+
+  if Rails.env.match(/production/)
+    before_action :invoke_wx_auth , if: Proc.new { |c| c.request.format != 'application/json' && !c.request.local? }
+    before_action :get_wechat_sns , if: Proc.new { |c| c.request.format != 'application/json' && !c.request.local? }
+  end
+  
   before_action :authenticate, except: [:show, :index]
   skip_before_action :authenticate, only: [:create], if: Proc.new { |c| c.request.format == 'application/json'}
 

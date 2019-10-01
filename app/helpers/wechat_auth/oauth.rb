@@ -9,7 +9,7 @@ module WechatAuth
       # appid default qianyan subscribe: wx2e050b0a651b968b sflx: wx37860e03b3e55945
       @appid = ENV["QIANYAN_APPID"]
       @secret = ENV["QIANYAN_APPSE"]
-      @redirect_uri = encode_url(ps[:redirect_uri]) || "http://cc.sflx.com.cn"
+      @redirect_uri = encode_url(ps[:redirect_uri])
       # default snsapi_base
       @scope = ps[:scope] || "snsapi_base"
       @state = "wechat_auth"
@@ -17,7 +17,8 @@ module WechatAuth
 
     def get_code_uri
       # URI.escape(snsapi.to_s)
-      "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=#{scope}&state=#{state}#wechat_redirect"
+      "https://www.sflx.com.cn/get-weixin-code.html?appid=#{appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=#{scope}&state=#{state}#wechat_redirect"
+      # direct authorize host name. "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=#{scope}&state=#{state}#wechat_redirect"
     end
 
     def get_openid_uri(code)

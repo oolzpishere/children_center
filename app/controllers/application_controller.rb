@@ -1,9 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception , if: Proc.new { |c| c.request.format != 'application/json' }
-  if Rails.env.match(/production/)
-    before_action :invoke_wx_auth , if: Proc.new { |c| c.request.format != 'application/json' && !c.request.local? }
-    before_action :get_wechat_sns , if: Proc.new { |c| c.request.format != 'application/json' && !c.request.local? }
-  end
+
 
   # 调用微信授权获取openid
   def invoke_wx_auth
