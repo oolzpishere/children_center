@@ -17,8 +17,9 @@ module WechatAuth
 
     def get_code_uri
       # URI.escape(snsapi.to_s)
-      "https://www.sflx.com.cn/get-weixin-code.html?appid=#{appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=#{scope}&state=#{state}#wechat_redirect"
-      # direct authorize host name. "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=#{scope}&state=#{state}#wechat_redirect"
+      # "https://www.sflx.com.cn/get-weixin-code.html?appid=#{appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=#{scope}&state=#{state}#wechat_redirect"
+      # direct authorize host name.
+      "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=#{scope}&state=#{state}#wechat_redirect"
     end
 
     def get_openid_uri(code)
