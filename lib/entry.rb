@@ -41,7 +41,7 @@ class Entry
     form_fields.each do |hash|
       k = hash.keys.first
       v = entry[k]
-      hash[k]["value"] = HandleValue.new(v).compiled_value
+      hash[k]["value"] = HandleValue.new(v).set_value
     end
     form_fields
   end

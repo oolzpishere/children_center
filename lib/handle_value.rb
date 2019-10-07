@@ -4,8 +4,6 @@ class HandleValue
   def initialize(value)
     @value = value
     @compiled_value ||= ""
-
-    set_value
   end
 
   def set_value
