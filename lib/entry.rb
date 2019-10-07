@@ -41,17 +41,9 @@ class Entry
     form_fields.each do |hash|
       k = hash.keys.first
       v = entry[k]
-      hash[k]["value"] = v
+      hash[k]["value"] = HandleValue.new(v).compiled_value
     end
     form_fields
-  end
-
-  def filter_show_fileds
-    form_fields.select do |hash|
-      v = hash.values.first
-      label = v["label"]
-      show_fileds.include?(label)
-    end
   end
 
   def remove_default_reject_fields
@@ -59,6 +51,14 @@ class Entry
       v = hash.values.first
       label = v["label"]
       default_reject_fields.include?(label)
+    end
+  end
+
+  def filter_show_fileds
+    form_fields.select do |hash|
+      v = hash.values.first
+      label = v["label"]
+      show_fileds.include?(label)
     end
   end
 
