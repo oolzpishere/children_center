@@ -5,6 +5,11 @@
                   <td>serial_number</td>
                 </tr>
                 <tr class=" ">
+                  <td>评奖</td>
+                  <td>String</td>
+                  <td>field_28</td>
+                </tr>
+                <tr class=" ">
                   <td>姓名</td>
                   <td>String</td>
                   <td>field_1</td>
@@ -158,6 +163,11 @@
                   <td>修改时间</td>
                   <td>DateTime</td>
                   <td>updated_at</td>
+                </tr>
+                <tr class=" ">
+                  <td>填写时长</td>
+                  <td>Float</td>
+                  <td>info_filling_duration</td>
                 </tr>
                 <tr class="metainfo-example hide">
                   <td>填写设备</td>

@@ -8,6 +8,7 @@
         <div class="card-body">
           <div class="card-text">
           <% form_fields = Entry.new(result: @match).set_show_values %>
+          <%# byebug %>
           <% form_fields.each do |field_hash| %>
           <%# form_fields.each do |k, v| %>
             <% v = field_hash.values.first %>

@@ -6,7 +6,7 @@ class HandleValue
     @compiled_value ||= ""
   end
 
-  def set_value
+  def get_value
     if value_is_address?
       compiled_value = value.values.join(" ")
     else
