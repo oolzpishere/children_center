@@ -5,12 +5,32 @@
         <div class="card-header">
           <span class="h6">第二十四届全国中小学生绘画书法作品比赛广西赛区参赛报名结果查询</span>
         </div>
+        <% form_fields = Entry.new(result: @match).set_show_values %>
+        <% prize_field = form_fields.find {|field| field.values.first["label"].match(/评奖/)} %>
+        <% name_field = form_fields.find {|field| field.values.first["label"].match(/姓名/)} %>
+
+        <% prize_field.values.first %>
+
         <div class="card-body">
+
+          <div class="card mb-3">
+            <div class="card-header orange lighten-1">
+              评奖结果
+            </div>
+            <div class="card-body">
+              <% if(prize_field.values.first["value"].to_s.empty?) %>
+                您的作品尚在评审中，请等待结果公布。
+              <% else %>
+                恭喜<%= name_field.values.first["value"] %>同学，荣获广西赛区<%= prize_field.values.first["value"] %>。
+                如需参加全国赛，请点击下方缴纳报名费。
+              <% end %>
+
+            </div>
+          </div>
+
           <div class="card-text">
-          <% form_fields = Entry.new(result: @match).set_show_values %>
           <%# byebug %>
           <% form_fields.each do |field_hash| %>
-          <%# form_fields.each do |k, v| %>
             <% v = field_hash.values.first %>
             <p class="mb-1">
               <b><%= v["label"] + ":"%></b>

@@ -1,14 +1,14 @@
 # coding: utf-8
 class Entry
   attr_accessor :entry, :form_fields
-  attr_reader :result, :xml_factory, :form_keys, :show_fileds, :default_reject_fields
+  attr_reader :xml_factory, :form_keys, :show_fileds, :default_reject_fields
 
   # hd=hash_data
   # params:
   # ps[:result]
   # optional: ps[:show_fileds]
   def initialize(ps = {})
-    @result = ps[:result]
+    result = ps[:result]
     @entry = result[:entry]
     form = result.form
     # form = ps[:form]

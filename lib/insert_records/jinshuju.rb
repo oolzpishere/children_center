@@ -1,8 +1,8 @@
 module InsertRecords
   class Jinshuju < Base
-    # InsertRecords::Jinshuju.new("0llDiH").batch_query
+    # InsertRecords::Jinshuju.new("0llDiH").batch_insert
 
-    def batch_query
+    def batch_insert
       response, response_body_hash = request_loop_block {|response| create_records(response) }
       while response_body_hash["next"]
         response, response_body_hash = request_loop_block(response_body_hash["next"]) {|response| create_records(response) }
