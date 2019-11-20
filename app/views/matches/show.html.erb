@@ -18,11 +18,20 @@
               评奖结果
             </div>
             <div class="card-body">
-              <% if(prize_field.values.first["value"].to_s.empty?) %>
+              <% prize = prize_field.values.first["value"].to_s %>
+              <% case %>
+              <% when prize.empty? %>
                 您的作品尚在评审中，请等待结果公布。
-              <% else %>
-                恭喜<%= name_field.values.first["value"] %>同学，荣获广西赛区<%= prize_field.values.first["value"] %>。
-                如需参加全国赛，请点击下方缴纳报名费。
+              <% when prize.match(/特等奖/) %>
+              恭喜<%= name_field.values.first["value"] %>同学，你的第二十四届全国中小学生绘画书法作品比赛参赛作品获得复评一等奖！你的获奖作品已被选送全国组委会参加终评，冲击全国一等奖，自愿参加终评请点击下方链接。
+              <% when prize.match(/一等奖/) %>
+              恭喜<%= name_field.values.first["value"] %>同学，你的第二十四届全国中小学生绘画书法作品比赛参赛作品获得复评<%= prize %>！你的获奖作品已被选送全国组委会参加终评，冲击全国<%= prize %>，自愿参加终评请点击下方链接。
+              <% when prize.match(/二等奖/) %>
+              恭喜<%= name_field.values.first["value"] %>同学，你的第二十四届全国中小学生绘画书法作品比赛参赛作品获得复评<%= prize %>！你的获奖作品已被选送全国组委会参加终评，冲击全国<%= prize %>，自愿参加终评请点击下方链接。
+              <% when prize.match(/三等奖/) %>
+              恭喜<%= name_field.values.first["value"] %>同学，你的第二十四届全国中小学生绘画书法作品比赛参赛作品获得复评<%= prize %>！你的获奖作品已被选送全国组委会参加终评，冲击全国<%= prize %>，自愿参加终评请点击下方链接。
+              <% when prize.match(/优胜奖/) %>
+              恭喜<%= name_field.values.first["value"] %>同学，你的参赛作品获得复评优胜！
               <% end %>
 
             </div>
