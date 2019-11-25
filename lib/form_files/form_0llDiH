@@ -5,6 +5,11 @@
                   <td>serial_number</td>
                 </tr>
                 <tr class=" ">
+                  <td>预计获全国奖项</td>
+                  <td>String</td>
+                  <td>field_29</td>
+                </tr>
+                <tr class=" ">
                   <td>评奖</td>
                   <td>String</td>
                   <td>field_28</td>

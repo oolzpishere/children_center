@@ -5,7 +5,7 @@ class MatchesController < ApplicationController
     before_action :invoke_wx_auth , if: Proc.new { |c| c.request.format != 'application/json' && !c.request.local? }
     before_action :get_wechat_sns , if: Proc.new { |c| c.request.format != 'application/json' && !c.request.local? }
   end
-  
+
   before_action :authenticate, except: [:show, :index]
   skip_before_action :authenticate, only: [:create], if: Proc.new { |c| c.request.format == 'application/json'}
 
@@ -13,10 +13,12 @@ class MatchesController < ApplicationController
   # GET /matches.json
   def index
     if Rails.env.match(/production/)
-      @openid_results = Match.includes(:form).where(openid: session[:openid])
+      @openid_results = Match.includes(:form).where(openid: session[:openid]).order(id: :desc)
     else
       @openid_results = Match.includes(:form).order(id: :desc)
     end
+
+    @top_four_prize
 
   end
 

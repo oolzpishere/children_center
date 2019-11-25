@@ -3,10 +3,11 @@
     <div class="col-12 my-3">
       <div class="card">
         <div class="card-header">
-          <span class="h6">第二十四届全国中小学生绘画书法作品比赛广西赛区参赛报名结果查询</span>
+          <span class="h6">第二十四届全国中小学生绘画书法作品比赛全国终评入围及预估获奖结果查询
+</span>
         </div>
         <% form_fields = Entry.new(result: @match).set_show_values %>
-        <% prize_field = form_fields.find {|field| field.values.first["label"].match(/评奖/)} %>
+        <% prize_field = form_fields.find {|field| field.values.first["label"].match(/预计获全国奖项/)} %>
         <% name_field = form_fields.find {|field| field.values.first["label"].match(/姓名/)} %>
 
         <% prize_field.values.first %>
@@ -15,24 +16,24 @@
 
           <div class="card mb-3">
             <div class="card-header orange lighten-1">
-              评奖结果
+              复评结果
             </div>
             <div class="card-body">
               <% prize = prize_field.values.first["value"].to_s %>
               <% case %>
               <% when prize.empty? %>
-                您的作品尚在评审中，请等待结果公布。
-              <% when prize.match(/特等奖/) %>
-              恭喜<%= name_field.values.first["value"] %>同学，你的第二十四届全国中小学生绘画书法作品比赛参赛作品获得复评一等奖！你的获奖作品已被选送全国组委会参加终评，冲击全国一等奖，自愿参加终评请点击下方链接。
-              <% when prize.match(/一等奖/) %>
-              恭喜<%= name_field.values.first["value"] %>同学，你的第二十四届全国中小学生绘画书法作品比赛参赛作品获得复评<%= prize %>！你的获奖作品已被选送全国组委会参加终评，冲击全国<%= prize %>，自愿参加终评请点击下方链接。
-              <% when prize.match(/二等奖/) %>
-              恭喜<%= name_field.values.first["value"] %>同学，你的第二十四届全国中小学生绘画书法作品比赛参赛作品获得复评<%= prize %>！你的获奖作品已被选送全国组委会参加终评，冲击全国<%= prize %>，自愿参加终评请点击下方链接。
-              <% when prize.match(/三等奖/) %>
-              恭喜<%= name_field.values.first["value"] %>同学，你的第二十四届全国中小学生绘画书法作品比赛参赛作品获得复评<%= prize %>！你的获奖作品已被选送全国组委会参加终评，冲击全国<%= prize %>，自愿参加终评请点击下方链接。
-              <% when prize.match(/优胜奖/) %>
-              恭喜<%= name_field.values.first["value"] %>同学，你的参赛作品获得复评优胜！
+                很遗憾您的作品未入围“第二十四届全国中小学生绘画书法作品比赛”全国赛终评，感谢您的参与，愿您下届比赛能取得优异成绩！
+              <% when prize.match(/一等奖或二等奖/) %>
+              <%= name_field.values.first["value"] %>同学，您的作品已获本届“全国中小学生绘画书法作品比赛”争夺全国赛<%= prize %>的资格，自愿参加全国赛终评请点击“确认参赛”。
+              <% when prize.match(/二等奖或三等奖/) %>
+              <%= name_field.values.first["value"] %>同学，您的作品已获本届“全国中小学生绘画书法作品比赛”争夺全国赛<%= prize %>的资格，自愿参加全国赛终评请点击“确认参赛”。
+              <% when prize.match(/未入选/) %>
+              很遗憾您的作品未入围“第二十四届全国中小学生绘画书法作品比赛”全国赛终评，感谢您的参与，愿您下届比赛能取得优异成绩！
               <% end %>
+              <div class="col-12 mt-3 d-flex  justify-content-around ">
+                <%= link_to '确认参赛', 'https://jinshuju.net/f/5twzly', class: "btn btn-sm btn-success" %>
+                <%= link_to '结果查询', 'https://jinshuju.net/f/5twzly/s/re0bU4', class: "btn btn-sm btn-primary" %>
+              </div>
 
             </div>
           </div>
