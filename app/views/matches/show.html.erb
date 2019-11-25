@@ -30,10 +30,13 @@
               <% when prize.match(/未入选/) %>
               很遗憾您的作品未入围“第二十四届全国中小学生绘画书法作品比赛”全国赛终评，感谢您的参与，愿您下届比赛能取得优异成绩！
               <% end %>
-              <div class="col-12 mt-3 d-flex  justify-content-around ">
-                <%= link_to '确认参赛', 'https://jinshuju.net/f/5twzly', class: "btn btn-sm btn-success" %>
-                <%= link_to '结果查询', 'https://jinshuju.net/f/5twzly/s/re0bU4', class: "btn btn-sm btn-primary" %>
-              </div>
+
+              <% if prize.match(/一等奖或二等奖|二等奖或三等奖/) %>
+                <div class="col-12 mt-3 d-flex  justify-content-around ">
+                  <%= link_to '确认参赛', 'https://jinshuju.net/f/5twzly', class: "btn btn-sm btn-success" %>
+                  <%= link_to '结果查询', 'https://jinshuju.net/f/5twzly/s/re0bU4', class: "btn btn-sm btn-primary" %>
+                </div>
+              <% end %>
 
             </div>
           </div>

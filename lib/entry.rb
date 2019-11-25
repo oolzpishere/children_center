@@ -22,7 +22,7 @@ class Entry
     @form_fields = xml_factory.form_fields
     @form_keys = xml_factory.form_keys
 
-    @default_reject_fields = ['发票号', '邮寄状态','提交人', '微信头像', '微信OpenID', '微信昵称', '微信性别', '微信国家', '微信省市', '修改时间', 'IP', "填写设备", "操作系统", "浏览器"]
+    @default_reject_fields = ['评奖','发票号', '邮寄状态','提交人', '微信头像', '微信OpenID', '微信昵称', '微信性别', '微信国家', '微信省市', '修改时间', 'IP', "填写设备", "操作系统", "浏览器"]
   end
 
   def set_show_values

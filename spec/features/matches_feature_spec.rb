@@ -40,6 +40,16 @@ RSpec.feature "Matches", type: :feature do
       expect(page).to have_text("很遗憾您的作品未入围“第二十四届全国中小学生绘画书法作品比赛”全国赛终评，感谢您的参与，愿您下届比赛能取得优异成绩！")
     end
 
+    it "not showing text" do
+      visit "/matches/1"
+      expect(page).to_not have_text("确认参赛")
+    end
+
+    it "not showing text" do
+      visit "/matches/1"
+      expect(page).to_not have_text("评奖")
+    end
+
     it "returns correct text" do
       visit "/matches/2"
 
