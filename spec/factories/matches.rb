@@ -1,6 +1,7 @@
 FactoryBot.define do
   entry_sting = '{
     "serial_number": 123,
+    "field_29": "",
     "field_28": "",
     "field_1": "张三",
     "field_2": "选项1",
@@ -51,11 +52,11 @@ FactoryBot.define do
   entry_json_prize_four = entry_json_prize_empty.dup
   entry_json_prize_five = entry_json_prize_empty.dup
 
-  entry_json_prize_one["field_28"] = "特等奖"
-  entry_json_prize_two["field_28"] = "一等奖"
-  entry_json_prize_three["field_28"] = "二等奖"
-  entry_json_prize_four["field_28"] = "三等奖"
-  entry_json_prize_five["field_28"] = "优胜奖"
+  entry_json_prize_one["field_29"] = "一等奖或二等奖"
+  entry_json_prize_two["field_29"] = "一等奖或二等奖"
+  entry_json_prize_three["field_29"] = "二等奖或三等奖"
+  entry_json_prize_four["field_29"] = "二等奖或三等奖"
+  entry_json_prize_five["field_29"] = "未入选"
 
   factory :match, class: "Match" do
     serial_number { 1 }
