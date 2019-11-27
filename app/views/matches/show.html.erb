@@ -16,7 +16,7 @@
 
           <div class="card mb-3">
             <div class="card-header orange lighten-1">
-              复评结果
+              全国终评入围结果
             </div>
             <div class="card-body">
               <% prize = prize_field.values.first["value"].to_s %>
@@ -34,7 +34,7 @@
               <% if prize.match(/一等奖或二等奖|二等奖或三等奖/) %>
                 <div class="col-12 mt-3 d-flex  justify-content-around ">
                   <%= link_to '自愿参赛', 'https://jinshuju.net/f/5twzly', class: "btn btn-sm btn-success" %>
-                  <%= link_to '结果查询', 'https://jinshuju.net/f/5twzly/s/re0bU4', class: "btn btn-sm btn-primary" %>
+                  <%= link_to '终评结果查询', 'https://jinshuju.net/f/5twzly/s/re0bU4', class: "btn btn-sm btn-primary" %>
                 </div>
               <% end %>
 
