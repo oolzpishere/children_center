@@ -24,16 +24,16 @@
               <% when prize.empty? %>
                 很遗憾您的作品未入围“第二十四届全国中小学生绘画书法作品比赛”全国赛终评，感谢您的参与，愿您下届比赛能取得优异成绩！
               <% when prize.match(/一等奖或二等奖/) %>
-              <%= name_field.values.first["value"] %>同学，您的作品已获本届“全国中小学生绘画书法作品比赛”争夺全国赛<%= prize %>的资格，自愿参加全国赛终评请点击“确认参赛”。
+              <%= name_field.values.first["value"] %>同学，你的参赛作品入围“第二十四届全国中小学生绘画书法作品比赛”全国终评，并获得参与全国终评一、二等奖评选的资格，祝贺你！如果你自愿参加全国终评请点击“自愿参赛”。
               <% when prize.match(/二等奖或三等奖/) %>
-              <%= name_field.values.first["value"] %>同学，您的作品已获本届“全国中小学生绘画书法作品比赛”争夺全国赛<%= prize %>的资格，自愿参加全国赛终评请点击“确认参赛”。
+              <%= name_field.values.first["value"] %>同学，你的参赛作品入围“第二十四届全国中小学生绘画书法作品比赛”全国终评，并获得参与全国终评二、三等奖评选的资格，祝贺你！如果你自愿参加全国终评请点击“自愿参赛”。
               <% when prize.match(/未入选/) %>
               很遗憾您的作品未入围“第二十四届全国中小学生绘画书法作品比赛”全国赛终评，感谢您的参与，愿您下届比赛能取得优异成绩！
               <% end %>
 
               <% if prize.match(/一等奖或二等奖|二等奖或三等奖/) %>
                 <div class="col-12 mt-3 d-flex  justify-content-around ">
-                  <%= link_to '确认参赛', 'https://jinshuju.net/f/5twzly', class: "btn btn-sm btn-success" %>
+                  <%= link_to '自愿参赛', 'https://jinshuju.net/f/5twzly', class: "btn btn-sm btn-success" %>
                   <%= link_to '结果查询', 'https://jinshuju.net/f/5twzly/s/re0bU4', class: "btn btn-sm btn-primary" %>
                 </div>
               <% end %>

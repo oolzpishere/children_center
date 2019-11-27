@@ -56,22 +56,22 @@ RSpec.feature "Matches", type: :feature do
       expect(page).to have_text("序号: 123")
       expect(page).to have_text("姓名: 张三")
       expect(page).to have_text("学校全称: 这是一行文字")
-      expect(page).to have_text("张三同学，您的作品已获本届“全国中小学生绘画书法作品比赛”争夺全国赛一等奖或二等奖的资格，自愿参加全国赛终评请点击“确认参赛”。")
+      expect(page).to have_text("张三同学，你的参赛作品入围“第二十四届全国中小学生绘画书法作品比赛”全国终评，并获得参与全国终评一、二等奖评选的资格，祝贺你！如果你自愿参加全国终评请点击“自愿参赛”。")
     end
 
     it "returns correct text" do
       visit "/matches/3"
-      expect(page).to have_text("张三同学，您的作品已获本届“全国中小学生绘画书法作品比赛”争夺全国赛一等奖或二等奖的资格，自愿参加全国赛终评请点击“确认参赛”。")
+      expect(page).to have_text("张三同学，你的参赛作品入围“第二十四届全国中小学生绘画书法作品比赛”全国终评，并获得参与全国终评一、二等奖评选的资格，祝贺你！如果你自愿参加全国终评请点击“自愿参赛”。")
     end
 
     it "returns correct text" do
       visit "/matches/4"
-      expect(page).to have_text("张三同学，您的作品已获本届“全国中小学生绘画书法作品比赛”争夺全国赛二等奖或三等奖的资格，自愿参加全国赛终评请点击“确认参赛”。")
+      expect(page).to have_text("张三同学，你的参赛作品入围“第二十四届全国中小学生绘画书法作品比赛”全国终评，并获得参与全国终评二、三等奖评选的资格，祝贺你！如果你自愿参加全国终评请点击“自愿参赛”。")
     end
 
     it "returns correct text" do
       visit "/matches/5"
-      expect(page).to have_text("张三同学，您的作品已获本届“全国中小学生绘画书法作品比赛”争夺全国赛二等奖或三等奖的资格，自愿参加全国赛终评请点击“确认参赛”。")
+      expect(page).to have_text("张三同学，你的参赛作品入围“第二十四届全国中小学生绘画书法作品比赛”全国终评，并获得参与全国终评二、三等奖评选的资格，祝贺你！如果你自愿参加全国终评请点击“自愿参赛”。")
     end
 
     it "returns correct text" do
