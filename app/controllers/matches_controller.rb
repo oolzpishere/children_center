@@ -18,7 +18,7 @@ class MatchesController < ApplicationController
       @openid_results = Match.includes(:form).order(id: :desc)
     end
 
-    @top_four_prize
+    @have_prize
 
   end
 
