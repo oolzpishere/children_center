@@ -102,3 +102,6 @@ gem 'faker'
 gem 'activerecord-import'
 
 gem "typhoeus"
+
+gem 'qcloud-sms', "~> 1.0.1"
+gem 'aliyun-sms'
