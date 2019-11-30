@@ -65,7 +65,7 @@ module SendSms
     attr_reader :phone_numbers
     def initialize(record, type)
       super
-      @phone_numbers = self.get_phone(record)
+      @phone_numbers = self.get_phone
     end
 
     def send_sms
