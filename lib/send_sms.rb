@@ -65,14 +65,11 @@ module SendSms
     def sms_params
       case type
       when /jiazhang/
-        template_code = "486553"
+        template_code = "486620"
         template_param = [record.entry["field_1"]]
-      when /code/
-        template_code = "276826"
-        template_param = [record.entry["field_1"], "2"]
       when /test/
-        template_code = "276826"
-        template_param = ["field_1",'2']
+        template_code = "486620"
+        template_param = ["field_1"]
       end
       return template_code, template_param
     end
