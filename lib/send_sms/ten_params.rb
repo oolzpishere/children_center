@@ -13,7 +13,7 @@ module SendSms
       self.send(type)
     end
 
-    def order
+    def jiazhang
       [record.entry["field_1"]]
     end
 
