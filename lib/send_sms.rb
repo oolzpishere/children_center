@@ -44,7 +44,7 @@ module SendSms
   end
 
   class Tencent < Base
-    # SendSms::Tencent.new(match, "test").send_sms
+    # SendSms::Tencent.new(match, "jiazhang").send_sms
     attr_reader :phone_number
     def initialize(record, type, phone=nil)
       @record = record
@@ -79,7 +79,7 @@ module SendSms
     end
 
     def _buf_send_match
-      matches = Match.all.order(:id)[5000..-1].select {|m| m.entry["field_29"].match(/二等奖或三等奖/)}; 0
+      matches = Match.all.order(:id)[10000..-1].select {|m| m.entry["field_29"].match(/二等奖或三等奖/)}; 0
 
       m_phones=[]
       m_phone_uniq=[]
@@ -89,6 +89,10 @@ module SendSms
           m_phones << phone
           m_phone_uniq << m
         end
+      end; 0
+
+      m_phone_uniq.each do |m|
+        SendSms::Tencent.new(m, "jiazhang").send_sms
       end; 0
 
     end
