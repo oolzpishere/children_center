@@ -89,6 +89,7 @@ gem 'cancan' # or cancancan
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 gem 'pg'
 
@@ -105,3 +106,12 @@ gem "typhoeus"
 
 gem 'qcloud-sms', "~> 1.0.1"
 gem 'aliyun-sms'
+
+gem 'frontend', path: 'components/frontend'
+gem 'shared', path: 'components/shared'
+gem 'children_match', path: 'components/children_match'
+
+gem 'bootstrap'
+gem "jquery-slick-rails"
+
+gem 'font-awesome-sass', '~> 5.8.1'

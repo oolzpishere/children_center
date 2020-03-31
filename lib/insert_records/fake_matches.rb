@@ -11,9 +11,9 @@ module InsertRecords
     def insert(num)
       matches = []
       num.times do |i|
-        matches << Match.new(match_params)
+        matches << ChildrenMatch::Match.new(match_params)
       end
-      Match.import matches
+      ChildrenMatch::Match.import matches
     end
 
     def match_params
