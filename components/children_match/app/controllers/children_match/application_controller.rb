@@ -20,7 +20,7 @@ module ChildrenMatch
     def get_wechat_sns
       # params[:state] 这个参数是微信特定参数，所以可以以此来判断授权成功后微信回调。
       if session[:openid].blank? && params[:state].present? && params[:state] == state
-        sns_info = WechatAuth::Client.new(code: params[:code]).json_hash
+        sns_info = ChildrenMatch::WechatAuth::Client.new(code: params[:code]).json_hash
         Rails.logger.debug("Weixin oauth2 response: #{sns_info}")
         # 重复使用相同一个code调用时：
         if sns_info["errcode"] != "40029"
@@ -35,7 +35,7 @@ module ChildrenMatch
       end
 
       def oauth
-        WechatAuth::Oauth.new(redirect_uri: request.url)
+        ChildrenMatch::WechatAuth::Oauth.new(redirect_uri: request.url)
       end
 
       def authenticate
